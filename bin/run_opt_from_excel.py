@@ -28,8 +28,7 @@ import argparse
 import numpy as np
 import pandas as pd
 
-from portfolio_opt import efficient_qp, cov_from_corr, portfolio_stats
-
+from alm.portfolio_opt import efficient_qp, cov_from_corr, portfolio_stats
 
 # ============ 유틸 ============
 

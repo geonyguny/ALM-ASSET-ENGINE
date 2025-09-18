@@ -1,3 +1,15 @@
+Metadata-Version: 2.4
+Name: alm-asset-engine
+Version: 0.1.0
+Summary: ALM simulator and portfolio optimizer
+License: MIT
+Requires-Python: >=3.9
+Description-Content-Type: text/markdown
+Requires-Dist: numpy>=1.24
+Requires-Dist: pandas>=2.0
+Requires-Dist: scipy>=1.10
+Requires-Dist: openpyxl>=3.1
+
 # ALM Asset Engine
 
 퇴직연금 ALM 시뮬레이터 & 포트폴리오 최적화 도구.
@@ -32,16 +44,16 @@ python bin/run_opt_from_excel.py \
 --seed: 재현성을 위한 시드. 리포트 용이면 n_paths를 늘리는 것을 권장
 
 # 공통충격: 정책 간 같은 경로 (개발/검증)
-.\.venv\Scripts\python.exe .\bin\alm_asset_engine.py `
-  --excel "C:\00_ALM\alm-asset-engine\sample_ALM_IO.xlsx" `
+.\.venv\Scripts\python.exe .\alm_asset_engine.py `
+  --excel "C:\00_ALM\project\test ALM IO_20250910.xlsx" `
   --mode schedule --liab_mode target --liab_scenario base `
   --horizon 10 --seed 42 `
   --csvdir ".\outputs\alm_commonZ_seed42" `
   --strict_corr
 
 # 독립경로(현실적) + 재현성 보장 (운영/보고)
-.\.venv\Scripts\python.exe .\bin\alm_asset_engine.py `
-  --excel "C:\00_ALM\alm-asset-engine\sample_ALM_IO.xlsx" `
+.\.venv\Scripts\python.exe .\alm_asset_engine.py `
+  --excel "C:\00_ALM\project\test ALM IO_20250910.xlsx" `
   --mode schedule --liab_mode target --liab_scenario base `
   --horizon 10 --seed 42 `
   --csvdir ".\outputs\alm_independent_seed42" `

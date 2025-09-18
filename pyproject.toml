@@ -1,0 +1,20 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "alm-asset-engine"
+version = "0.1.0"
+description = "ALM simulator and portfolio optimizer"
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+dependencies = [
+  "numpy>=1.24",
+  "pandas>=2.0",
+  "scipy>=1.10",
+  "openpyxl>=3.1"
+]
+
+[tool.setuptools.packages.find]
+include = ["alm"]
