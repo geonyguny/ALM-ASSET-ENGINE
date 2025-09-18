@@ -1,0 +1,18 @@
+# Python cache
+__pycache__/
+*.pyc
+
+# Virtual env
+.venv/
+Lib/
+Scripts/
+
+# Outputs
+outputs/
+out_csv/
+run_log.txt
+명령어.txt
+
+# Excel data (실데이터 차단)
+*.xlsx
+!examples/sample_ALM_IO.xlsx

@@ -1,0 +1,48 @@
+# ALM Asset Engine
+
+퇴직연금 ALM 시뮬레이터 & 포트폴리오 최적화 도구.
+
+## Features
+- Schedule / Fixed 모드 기여금 산출
+- 공통충격(Common shock) 모드 & 정책별 독립경로 선택
+- 상관행렬 엄격검사(strict_corr) + 입력 스냅샷 덤프
+- 포트폴리오 최적화(MSR/GMV/Target) with 경계/섹터 제약
+
+## Install
+```bash
+python -m venv .venv && . .venv/bin/activate   # Windows는 .\.venv\Scripts\Activate.ps1
+pip install -r requirements.txt
+
+# 시뮬
+python bin/alm_asset_engine.py \
+  --excel examples/sample_ALM_IO.xlsx \
+  --mode schedule --liab_mode target --liab_scenario base \
+  --horizon 10 --seed 42 --csvdir ./outputs/demo --strict_corr
+
+# 최적화
+python bin/run_opt_from_excel.py \
+  --excel examples/sample_ALM_IO.xlsx \
+  --policy 1 --period 1 --mode msr --outdir ./outputs/opt --strict_corr
+
+  
+# Options
+
+--strict_corr: corr 누락쌍 발견 시 즉시 에러(권장)
+--no_common_shock: 정책별 경로를 독립적으로 생성(현실적 MC)
+--seed: 재현성을 위한 시드. 리포트 용이면 n_paths를 늘리는 것을 권장
+
+# 공통충격: 정책 간 같은 경로 (개발/검증)
+.\.venv\Scripts\python.exe .\alm_asset_engine.py `
+  --excel "C:\00_ALM\project\test ALM IO_20250910.xlsx" `
+  --mode schedule --liab_mode target --liab_scenario base `
+  --horizon 10 --seed 42 `
+  --csvdir ".\outputs\alm_commonZ_seed42" `
+  --strict_corr
+
+# 독립경로(현실적) + 재현성 보장 (운영/보고)
+.\.venv\Scripts\python.exe .\alm_asset_engine.py `
+  --excel "C:\00_ALM\project\test ALM IO_20250910.xlsx" `
+  --mode schedule --liab_mode target --liab_scenario base `
+  --horizon 10 --seed 42 `
+  --csvdir ".\outputs\alm_independent_seed42" `
+  --strict_corr --no_common_shock
