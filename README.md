@@ -1,4 +1,4 @@
-# ALM Asset Engine
+# ALM Asset Engine test
 
 퇴직연금 **자산–부채(ALM)** 시뮬레이션 엔진.  
 엑셀 입력을 기반으로 Monte-Carlo 자산경로를 생성하고, 스케줄/고정 기여금 정책에서 **최소 필요 기여금**과 **FR(Funded Ratio)** 분포를 계산합니다.
